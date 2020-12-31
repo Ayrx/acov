@@ -1,0 +1,59 @@
+[[package]]
+category = "main"
+description = "Composable command line interface toolkit"
+name = "click"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "7.1.2"
+
+[[package]]
+category = "main"
+description = "Dynamic instrumentation toolkit for developers, reverse-engineers, and security researchers"
+name = "frida"
+optional = false
+python-versions = "*"
+version = "14.2.2"
+
+[[package]]
+category = "main"
+description = "Pretty-print tabular data"
+name = "tabulate"
+optional = false
+python-versions = "*"
+version = "0.8.7"
+
+[package.extras]
+widechars = ["wcwidth"]
+
+[metadata]
+content-hash = "29b21dfc91a1cd63acd83d5cc2a200a12d0c0c145576e861953dfa24992f748a"
+python-versions = "^3.6"
+
+[metadata.files]
+click = [
+    {file = "click-7.1.2-py2.py3-none-any.whl", hash = "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"},
+    {file = "click-7.1.2.tar.gz", hash = "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a"},
+]
+frida = [
+    {file = "frida-14.2.2-py2.7-linux-aarch64.egg", hash = "sha256:ca57d5669ff5409416c713a761278d2d84601211e2da5d518539260c2cd3fa70"},
+    {file = "frida-14.2.2-py2.7-linux-armv7l.egg", hash = "sha256:231227fae0365311a36d177d6e5ed6316adf5e5b7148bddc8d206039d62324ad"},
+    {file = "frida-14.2.2-py2.7-linux-i686.egg", hash = "sha256:68f59d618c0c62c23b032faed6db2cd227a3b89e562fb09983d42baa48fa3562"},
+    {file = "frida-14.2.2-py2.7-linux-x86_64.egg", hash = "sha256:45aebec8cd9d6f2b3004197f9589bd73b2ffd07f4276fa20104ad0708152251d"},
+    {file = "frida-14.2.2-py2.7-macosx-10.9-x86_64.egg", hash = "sha256:5c13243db23739cff3949bbb0b082709c4a632479b03fba5141a27ea232e587a"},
+    {file = "frida-14.2.2-py2.7-macosx-11.0-fat64.egg", hash = "sha256:b70a47b83ad344f6cf4de7d8a45ff8315ec6950b8e7773a01e3e88fea4cdc63c"},
+    {file = "frida-14.2.2-py2.7-win-amd64.egg", hash = "sha256:43bf2a30aae566d5162b784dc5ef4dabfa364abead697009803bda9fa2f2f2bc"},
+    {file = "frida-14.2.2-py2.7-win32.egg", hash = "sha256:3c2766193b8a5dcb7519f5e279ff42bf3dad66a659395ea585069ca9c26573ff"},
+    {file = "frida-14.2.2-py3.7-linux-aarch64.egg", hash = "sha256:af04e5b9a3af34bf9b73558a265e976a912f6e8eb836688dde3e577d5af6c2a7"},
+    {file = "frida-14.2.2-py3.7-linux-armv7l.egg", hash = "sha256:4cb21b24220fe1d1b28620b9c56b9669ee3b92b7944c0a621be0f6f76ab51c0e"},
+    {file = "frida-14.2.2-py3.8-linux-i686.egg", hash = "sha256:ea0c10b8c07d86f1345bda58c7cadcfe71a185f83814ce3d5c6352a02b2db0c8"},
+    {file = "frida-14.2.2-py3.8-linux-x86_64.egg", hash = "sha256:d2ab61dc0f4b62a18788912992938111f9b2a2cdd774cfbcd4c26ba6e80a65d6"},
+    {file = "frida-14.2.2-py3.8-macosx-10.9-x86_64.egg", hash = "sha256:c472037ed9707f8744e4ad2156498688a4985128456f86256f7ef9aa65bde797"},
+    {file = "frida-14.2.2-py3.8-macosx-11.0-arm64.egg", hash = "sha256:c3b92ec9bda632ec7a1fc4404d837f2dabe345ffa8c17525e83eb53bee249aba"},
+    {file = "frida-14.2.2-py3.8-win-amd64.egg", hash = "sha256:250e0e88e3ccbb348fab243818e829f2dfc64fa02ebd266ea7089c42d629145f"},
+    {file = "frida-14.2.2-py3.8-win32.egg", hash = "sha256:b71e9be36c76e27f84731ce2987abc9b347136012ba6c0a7619dd35951417c6e"},
+    {file = "frida-14.2.2.tar.gz", hash = "sha256:b72f3b161846c4dbf36a0b621d1487880564fcffcffda5eef23f17d5ecfad04a"},
+]
+tabulate = [
+    {file = "tabulate-0.8.7-py3-none-any.whl", hash = "sha256:ac64cb76d53b1231d364babcd72abbb16855adac7de6665122f97b593f1eb2ba"},
+    {file = "tabulate-0.8.7.tar.gz", hash = "sha256:db2723a20d04bcda8522165c73eea7c300eda74e0ce852d9022e0159d7895007"},
+]
