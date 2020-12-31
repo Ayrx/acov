@@ -13,6 +13,7 @@ python = "^3.6"
 click = "^7.0"
 frida = "^14.0"
 tabulate = "^0.8.6"
+click-option-group = "^0.5.2"
 
 [tool.poetry.scripts]
 acov = "acov:cli"

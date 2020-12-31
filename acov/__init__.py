@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import click
+from click_option_group import optgroup, RequiredMutuallyExclusiveOptionGroup
 import json
 import frida
 import sys
@@ -15,9 +16,11 @@ pid = None
 coverage_info = []
 
 @click.command()
-@click.option("--attach-pid", "-p", type=int, required=True)
+@optgroup.group(cls=RequiredMutuallyExclusiveOptionGroup)
+@optgroup.option("--attach-pid", "-p", type=int)
+@optgroup.option("--attach-name", "-n", type=str)
 @click.option("--output", "-o", type=str, required=True)
-def cli(attach_pid, output):
+def cli(attach_pid, attach_name, output):
     global script
     global device
     global pid
@@ -25,7 +28,17 @@ def cli(attach_pid, output):
     devices = frida.get_device_manager().enumerate_devices()
     device = get_device(devices)
 
-    process = device.attach(attach_pid)
+    process = None
+    if attach_pid:
+        process = device.attach(attach_pid)
+    elif attach_name:
+        for p in device.enumerate_processes():
+            if p.name == attach_name:
+                process = device.attach(p.pid)
+                break
+        else:
+            click.echo("[-] Unable to find process named: {}".format(attach_name), err=True)
+            return
 
     js = resource_string("acov.build", "_agent.js").decode()
     script = process.create_script(js, runtime="v8")

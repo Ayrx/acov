@@ -8,6 +8,21 @@ version = "7.1.2"
 
 [[package]]
 category = "main"
+description = "Option groups missing in Click"
+name = "click-option-group"
+optional = false
+python-versions = ">=3.6,<4"
+version = "0.5.2"
+
+[package.dependencies]
+Click = ">=7.0,<8"
+
+[package.extras]
+docs = ["sphinx (>=2.3,<3)", "pallets-sphinx-themes", "m2r"]
+tests = ["coverage (<6)", "pytest", "pytest-cov", "coveralls"]
+
+[[package]]
+category = "main"
 description = "Dynamic instrumentation toolkit for developers, reverse-engineers, and security researchers"
 name = "frida"
 optional = false
@@ -26,13 +41,17 @@ version = "0.8.7"
 widechars = ["wcwidth"]
 
 [metadata]
-content-hash = "29b21dfc91a1cd63acd83d5cc2a200a12d0c0c145576e861953dfa24992f748a"
+content-hash = "345c718cbc9919afc40079f88d6e94262e67814fb9966fb341ad0bb819482a57"
 python-versions = "^3.6"
 
 [metadata.files]
 click = [
     {file = "click-7.1.2-py2.py3-none-any.whl", hash = "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"},
     {file = "click-7.1.2.tar.gz", hash = "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a"},
+]
+click-option-group = [
+    {file = "click-option-group-0.5.2.tar.gz", hash = "sha256:743733a0f564438b6b761f49ddf37d845f9a662294ecabe0e832e597208bcf31"},
+    {file = "click_option_group-0.5.2-py3-none-any.whl", hash = "sha256:1b4b2ecf87ba8dea78060cffd294b38eea5af81f28a5f9be223c01b8c5ea9ab0"},
 ]
 frida = [
     {file = "frida-14.2.2-py2.7-linux-aarch64.egg", hash = "sha256:ca57d5669ff5409416c713a761278d2d84601211e2da5d518539260c2cd3fa70"},
