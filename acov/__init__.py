@@ -12,10 +12,12 @@ from tabulate import tabulate
 script = None
 device = None
 pid = None
+coverage_info = []
 
 @click.command()
 @click.option("--attach-pid", "-p", type=int, required=True)
-def cli(attach_pid):
+@click.option("--output", "-o", type=str, required=True)
+def cli(attach_pid, output):
     global script
     global device
     global pid
@@ -26,12 +28,43 @@ def cli(attach_pid):
     process = device.attach(attach_pid)
 
     js = resource_string("acov.build", "_agent.js").decode()
-    script = process.create_script(js)
-
+    script = process.create_script(js, runtime="v8")
+    script.on("message", on_message)
     script.load()
 
     input()
-    print("Stopped tracing...")
+    print("[+] Detaching session...")
+    process.detach()
+    print("[+] Saving output...")
+    save_output(output)
+    sys.exit(0)
+
+
+def save_output(output):
+    buckets = {}
+    for i in coverage_info:
+        tid = i["tid"]
+        m = { "module": i["module"], "offset": i["offset"] }
+        if tid not in buckets:
+            buckets[tid] = [m]
+        else:
+            buckets[tid].append(m)
+
+    for tid in buckets:
+        with open("{}_{}.cov".format(output, tid), "w") as f:
+            print("[+] Writing to {}".format(f.name))
+            for i in buckets[tid]:
+                f.write("{}+{}\n".format(i["module"], i["offset"]))
+
+
+def on_message(message, data):
+    payload = message["payload"]
+    print("[+] New basic block event")
+    coverage_info.append({
+        "module": payload["module"],
+        "offset": payload["offset"],
+        "tid": payload["tid"],
+    })
 
 
 def get_device(devices):
