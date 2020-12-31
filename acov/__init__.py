@@ -15,6 +15,7 @@ device = None
 pid = None
 coverage_info = []
 
+
 @click.command()
 @optgroup.group(cls=RequiredMutuallyExclusiveOptionGroup)
 @optgroup.option("--attach-pid", "-p", type=int)
@@ -37,7 +38,9 @@ def cli(attach_pid, attach_name, output):
                 process = device.attach(p.pid)
                 break
         else:
-            click.echo("[-] Unable to find process named: {}".format(attach_name), err=True)
+            click.echo(
+                "[-] Unable to find process named: {}".format(attach_name), err=True
+            )
             return
 
     js = resource_string("acov.build", "_agent.js").decode()
@@ -57,7 +60,7 @@ def save_output(output):
     buckets = {}
     for i in coverage_info:
         tid = i["tid"]
-        m = { "module": i["module"], "offset": i["offset"] }
+        m = {"module": i["module"], "offset": i["offset"]}
         if tid not in buckets:
             buckets[tid] = [m]
         else:
@@ -73,11 +76,13 @@ def save_output(output):
 def on_message(message, data):
     payload = message["payload"]
     print("[+] New basic block event")
-    coverage_info.append({
-        "module": payload["module"],
-        "offset": payload["offset"],
-        "tid": payload["tid"],
-    })
+    coverage_info.append(
+        {
+            "module": payload["module"],
+            "offset": payload["offset"],
+            "tid": payload["tid"],
+        }
+    )
 
 
 def get_device(devices):
@@ -97,5 +102,4 @@ def get_device(devices):
 
 def list_devices(devices):
     devices_info = [(i.id, i.name, i.type) for i in devices]
-    click.echo(tabulate(
-        devices_info, headers=["id", "name", "type"], showindex=True))
+    click.echo(tabulate(devices_info, headers=["id", "name", "type"], showindex=True))
