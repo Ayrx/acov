@@ -20,8 +20,9 @@ coverage_info = []
 @optgroup.group(cls=RequiredMutuallyExclusiveOptionGroup)
 @optgroup.option("--attach-pid", "-p", type=int)
 @optgroup.option("--attach-name", "-n", type=str)
+@optgroup.option("--file", "-f", type=str)
 @click.option("--output", "-o", type=str, required=True)
-def cli(attach_pid, attach_name, output):
+def cli(attach_pid, attach_name, file, output):
     global script
     global device
     global pid
@@ -42,11 +43,17 @@ def cli(attach_pid, attach_name, output):
                 "[-] Unable to find process named: {}".format(attach_name), err=True
             )
             return
+    elif file:
+        pid = device.spawn([file])
+        process = device.attach(pid)
 
     js = resource_string("acov.build", "_agent.js").decode()
     script = process.create_script(js, runtime="v8")
     script.on("message", on_message)
     script.load()
+
+    if file:
+        device.resume(pid)
 
     input()
     print("[+] Detaching session...")
